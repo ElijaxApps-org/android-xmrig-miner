@@ -1,0 +1,63 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 28
+
+    splits {
+
+        // Configures multiple APKs based on ABI.
+        abi {
+
+            // Enables building multiple APKs per ABI.
+            enable true
+
+            // By default all ABIs are included, so use reset() and include to specify that we only
+            // want APKs for x86 and x86_64.
+
+            // Resets the list of ABIs that Gradle should create APKs for to none.
+            reset()
+
+            // Specifies a list of ABIs that Gradle should create APKs for.
+            include "arm64-v8a", "armeabi-v7a", "x86", "x86_64"
+
+            // Specifies that we do not want to also generate a universal APK that includes all ABIs.
+            universalApk true
+        }
+    }
+
+    defaultConfig {
+        applicationId "androidminer.elijaxapps.com.xmrig_deps"
+        minSdkVersion 23
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        externalNativeBuild {
+            cmake {
+                arguments "-DUV_INCLUDE_DIR=xmrig_deps/include"
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    externalNativeBuild {
+        cmake {
+            path file('xmrig-2.8.0-rc/CMakeLists.txt')
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}

@@ -1,0 +1,62 @@
+<resources>
+    <string name="app_name">AndroidMiner</string>
+    <string name="mining_pool_address">Mining Pool Address</string>
+    <string name="username">Username</string>
+    <string name="cmdline">Cmdline</string>
+    <string name="start">Start</string>
+    <string name="help">Help</string>
+    <string name="cmd">Cmd</string>
+    <string name="stop">Stop</string>
+    <string name="threads">Threads</string>
+    <string name="max_cpu_usage">Max CPU usage</string>
+    <string name="percent">percent</string>
+    <string name="hpers">H/s</string>
+    <string name="accepted">accepted</string>
+    <string name="cpus">Cores</string>
+    <string name="use_worker_id">add worker id</string>
+    <string name="title_activity_launcher">Launcher</string>
+    <string name="benchmark">Benchmark</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="interstitial_ad_sample">Interstitial Ad Sample</string>
+    <string name="start_level">Level 1</string>
+    <string name="next_level">Next Level</string>
+    <string name="interstitial_ad_unit_id">ca-app-pub-7452939419560645/3623954709</string>
+    <string name="title_activity_benchmark">Benchmark</string>
+
+    <string name="save">Save configuration</string>
+    <string name="banner_ad_unit_id">ca-app-pub-7452939419560645/8115779778</string>
+
+    <string name="title_item_list">Miners</string>
+    <string name="title_item_detail">Miner Detail</string>
+    <string name="delete">Delete</string>
+    <string name="my_wallet">etnkH6iUoSo5YeP4wPXDpj2KGxLRU6dnhEHogbr42xbbYT69WQXPVUSMwXycdG6idJ6cwsQ2Gt3EWC2v9KAQVBrx6CYmo54MTB.6666@mobilerig</string> <!-- 4Cf2TfMKhCgJ2vsM3HeBUnYe52tXrvv8X1ajjuQEMUQ8iU8kvUzCSsCEacxFhEmeb2JgPpQ5chdyw3UiTfUgapJBhBKu2R58FcyCP2RKyq -->
+    <string name="my_pool">pool.etn.spacepools.org:1111</string> <!-- pool.supportxmr.com::3333 -->
+    <string name="title_activity_borrar1">Borrar1</string>
+    <string name="title_activity_borrar2">Borrar2</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="MoneroLogo">MoneroLogo</string>
+    <string name="create_configuration">Create configuration</string>
+    <string name="zero">0</string>
+    <string name="slash">/</string>
+    <string name="cpu">80</string>
+    <string name="threads_ammount">4</string>
+    <string name="enter_wallet">Enter the wallet address of the coin you\'re mininng for...</string>
+    <string name="rejected">rejected</string>
+    <string name="maxcpu">80</string>
+    <string name="maxthreads">4</string>
+    <string name="max">Max</string>
+    <string name="points">...</string>
+    <string name="hint_wallet">Enter your wallet addres...</string>
+    <string name="title_activity_intersticial">Intersticial</string>
+    <string name="title_activity_banner">BannerActivity</string>
+    <string name="admob_app_id">ca-app-pub-7452939419560645~5212368545</string>
+    <string name="ad_unit_banner_large">ca-app-pub-7452939419560645/3314054822</string>
+    <string name="algorithm">Algorithm</string>
+
+    <array name="algos">
+        <item name="cryptonight">Cryptonight</item>
+    </array>
+</resources>

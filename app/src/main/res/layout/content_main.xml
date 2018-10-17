@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentTop="false"
+    android:layout_gravity="top|bottom|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|start|end"
+    android:layout_margin="32dp"
+    android:layout_marginTop="0dp"
+    android:orientation="vertical"
+    android:theme="@style/AppTheme"
+    android:visibility="visible"
+    tools:context="com.elijaxapps.androidminer.MainActivity">
+
+    <LinearLayout
+        android:id="@+id/lin1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:layout_marginTop="32dp"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:id="@+id/linearpool"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:labelFor="@+id/pool"
+                android:text="@string/mining_pool_address"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/pool"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="@string/my_pool"
+                android:inputType="text"
+                android:text="@string/my_pool"
+                android:textSize="12sp"
+                tools:targetApi="o" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearusername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:labelFor="@id/username"
+                    android:text="@string/username" />
+
+                <CheckBox
+                    android:id="@+id/use_worker_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/use_worker_id" />
+            </LinearLayout>
+
+
+            <EditText
+                android:id="@+id/username"
+                android:layout_width="320dp"
+                android:layout_height="match_parent"
+                android:autofillHints="@string/my_wallet"
+                android:inputType="text"
+                android:text="@string/my_wallet"
+                android:textSize="12sp"
+                tools:targetApi="o" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lin2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="64dp"
+                android:layout_weight="1"
+                android:labelFor="@+id/threads"
+                android:text="@string/threads" />
+
+            <EditText
+                android:id="@+id/threads"
+                android:layout_width="wrap_content"
+                android:layout_height="64dp"
+                android:layout_weight="1"
+                android:autofillHints="@string/threads_ammount"
+                android:inputType="number"
+                android:text="@string/threads_ammount"
+                android:textSize="18sp"
+                tools:targetApi="o" />
+
+            <TextView
+                android:id="@+id/cpus"
+                android:layout_width="wrap_content"
+                android:layout_height="64dp"
+                android:layout_weight="1"
+                android:labelFor="@id/maxcpu"
+                android:text="@string/cpus" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="64dp"
+                android:layout_marginStart="5sp"
+
+                android:layout_weight="1"
+                android:labelFor="@+id/maxcpu"
+                android:text="@string/max_cpu_usage" />
+
+            <EditText
+                android:id="@+id/maxcpu"
+                android:layout_width="wrap_content"
+                android:layout_height="64dp"
+                android:layout_weight="1"
+                android:autofillHints="number"
+                android:inputType="number"
+                android:text="@string/cpu"
+                android:textSize="18sp"
+                tools:targetApi="o" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="64dp"
+                android:layout_weight="1"
+                android:text="@string/percent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/actual"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:text="@string/zero"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+            <TextView
+                android:id="@+id/slash"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:text="@string/slash"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+            <TextView
+                android:id="@+id/speed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:text="@string/zero"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:text="@string/hpers"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+            <TextView
+                android:id="@+id/accepted"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="5dp"
+                android:text="@string/zero"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@+id/accepted"
+                android:text="@string/accepted"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="#00FF00" />
+
+            <TextView
+                android:id="@+id/rejected"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="5dp"
+                android:text="@string/zero"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:labelFor="@id/rejected"
+                android:text="@string/rejected"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="#FF0000" />
+
+        </LinearLayout>
+
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="@android:dimen/notification_large_icon_height"
+            android:layout_gravity="fill"
+            android:fadeScrollbars="false"
+            android:fillViewport="true"
+            android:longClickable="true">
+
+            <TextView
+                android:id="@+id/output"
+                android:layout_width="match_parent"
+                android:layout_height="@android:dimen/notification_large_icon_height"
+                android:background="@android:color/darker_gray"
+                android:gravity="bottom"
+                android:scrollIndicators="right"
+                android:text="@string/points"
+                android:textSize="12sp" />
+
+        </ScrollView>
+
+
+        <!-- view for AdMob Banner Ad -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+
+            <Button
+                android:id="@+id/start"
+                style="@android:style/Widget.Material.Light.Button.Borderless.Colored"
+                android:layout_width="@dimen/small_button"
+                android:layout_height="@dimen/small_button"
+                android:layout_gravity="center"
+                android:layout_margin="16dp"
+                android:background="@android:drawable/ic_media_play"
+                android:backgroundTint="@android:color/holo_orange_dark"
+                android:bottomLeftRadius="8dp"
+                android:bottomRightRadius="8dp"
+                android:fadingEdge="horizontal|vertical"
+                android:gravity="start"
+                android:theme="@android:style/Widget.Material.Button.Borderless.Colored"
+                android:topLeftRadius="8dp"
+                android:topRightRadius="8dp" />
+
+
+            <Button
+                android:id="@+id/stop"
+                style="@android:style/Widget.Material.Light.Button.Borderless.Colored"
+                android:layout_width="@dimen/small_button"
+                android:layout_height="@dimen/small_button"
+                android:layout_gravity="center|end"
+                android:layout_margin="16dp"
+                android:background="@android:drawable/ic_menu_close_clear_cancel"
+                android:backgroundTint="@android:color/holo_orange_dark"
+                android:bottomLeftRadius="8dp"
+                android:bottomRightRadius="8dp"
+                android:fadingEdge="horizontal|vertical"
+                android:gravity="end"
+                android:theme="@android:style/Widget.Material.Button.Borderless.Colored"
+                android:topLeftRadius="8dp"
+                android:topRightRadius="8dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
+

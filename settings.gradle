@@ -1,0 +1,12 @@
+//!1)
+// Run libuv/libuv-1.23.1/BASHCOMPILE.sh to compile libuv for Android
+// you can edit configure-android-* shellscripts to build for a certain android version.
+
+//!2)
+// Uncomment this line below*:
+// include ':xmrig'
+
+//!3) Comment again the include above, and uncomment below*.
+// include ':app'
+
+//*) Note: Gradle sync every time you edit this file or any .gradle file.

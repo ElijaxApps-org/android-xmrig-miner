@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_alignParentTop="false"
+    android:layout_gravity="top|bottom|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|start|end"
+    android:theme="@style/AppTheme"
+    android:visibility="visible"
+    tools:context="com.elijaxapps.androidminer.MainActivity">
+
+    <include android:layout_margin="32dp"
+        android:id="@+id/include"
+        layout="@layout/content_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        ads:layout_constraintBottom_toTopOf="@+id/adView"
+        ads:layout_constraintEnd_toEndOf="parent"
+        ads:layout_constraintStart_toStartOf="parent"
+        ads:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/banner_ad_unit_id"
+        ads:layout_constraintBottom_toBottomOf="parent"
+        ads:layout_constraintEnd_toEndOf="parent"
+        ads:layout_constraintStart_toStartOf="parent"
+        ads:layout_constraintTop_toBottomOf="@+id/include" />
+
+
+</android.support.constraint.ConstraintLayout>
+

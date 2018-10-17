@@ -1,0 +1,49 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="fill_vertical|center"
+    android:orientation="vertical"
+    android:theme="@style/AppTheme"
+    android:layout_margin="32dp"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    tools:context="com.elijaxapps.androidminer.LauncherActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:contentDescription="@string/MoneroLogo"
+        android:src="@mipmap/ic_launcher" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:background="@android:drawable/ic_media_play"
+            android:id="@+id/create"
+            style="@android:style/Widget.Material.Button.Borderless.Colored"
+            android:layout_width="@dimen/small_button"
+            android:layout_height="@dimen/small_button"
+            android:layout_gravity="center"
+            android:layout_margin="16dp"
+            android:backgroundTint="@android:color/holo_orange_dark"
+            android:gravity="start" />
+
+        <Button
+            android:background="@android:drawable/ic_menu_slideshow"
+            android:id="@+id/benchmark"
+            style="@android:style/Widget.Material.Button.Borderless.Colored"
+            android:layout_width="@dimen/small_button"
+            android:layout_height="@dimen/small_button"
+            android:layout_gravity="center"
+            android:layout_margin="16dp"
+            android:backgroundTint="@android:color/holo_orange_dark"
+            android:gravity="end" />
+    </LinearLayout>
+
+</LinearLayout>
