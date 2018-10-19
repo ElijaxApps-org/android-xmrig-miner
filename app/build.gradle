@@ -33,22 +33,42 @@ android {
         versionCode 3
         versionName "1.00"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-    }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        externalNativeBuild {
+            cmake {
+                arguments "-DUV_INCLUDE_DIR=src/main/cpp/xmrig-2.8.0-rc/include"
+            }
         }
     }
-    buildToolsVersion '28.0.3'
-    dexOptions {
-        incremental false
+
+    buildTypes {
+
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            debuggable true
+            jniDebuggable true
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            debuggable false
+            jniDebuggable false
+        }
     }
+
+    buildToolsVersion '28.0.3'
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
     productFlavors {
+    }
+
+    externalNativeBuild {
+        cmake {
+            path file('src/main/cpp/xmrig-2.8.0-rc/CMakeLists.txt')
+        }
     }
 }
 

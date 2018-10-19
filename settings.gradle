@@ -4,9 +4,10 @@
 
 //!2)
 // Uncomment this line below*:
-// include ':xmrig'
+include ':app', ':libuv'
 
 //!3) Comment again the include above, and uncomment below*.
-// include ':app'
 
 //*) Note: Gradle sync every time you edit this file or any .gradle file.
+
+//project(':app').task('build').mustRunAfter(':libuv:build')
