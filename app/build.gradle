@@ -24,14 +24,6 @@ task deps(type: Exec){
 project.tasks.getAt("preBuild").dependsOn deps
 
 android {
-    signingConfigs {
-        config {
-            keyAlias 'key'
-            keyPassword 'n0s3d0nd3v1v0'
-            storeFile file('C:/Users/tooel/ASW/key/key.jks')
-            storePassword 'n0s3d0nd3v1v0'
-        }
-    }
     compileSdkVersion 26
     splits {
 
@@ -70,7 +62,6 @@ android {
                 arguments "-DUV_INCLUDE_DIR=src/main/cpp/xmrig-2.8.0-rc/include"
             }
         }
-        signingConfig signingConfigs.config
         multiDexEnabled true //important
     }
     buildTypes {
