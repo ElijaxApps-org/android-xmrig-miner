@@ -31,8 +31,8 @@
     <string name="title_item_list">Miners</string>
     <string name="title_item_detail">Miner Detail</string>
     <string name="delete">Delete</string>
-    <string name="my_wallet">etnkH6iUoSo5YeP4wPXDpj2KGxLRU6dnhEHogbr42xbbYT69WQXPVUSMwXycdG6idJ6cwsQ2Gt3EWC2v9KAQVBrx6CYmo54MTB.6666@mobilerig</string> <!-- 4Cf2TfMKhCgJ2vsM3HeBUnYe52tXrvv8X1ajjuQEMUQ8iU8kvUzCSsCEacxFhEmeb2JgPpQ5chdyw3UiTfUgapJBhBKu2R58FcyCP2RKyq -->
-    <string name="my_pool">pool.etn.spacepools.org:1111</string> <!-- pool.supportxmr.com::3333 -->
+    <string name="my_wallet">4Cf2TfMKhCgJ2vsM3HeBUnYe52tXrvv8X1ajjuQEMUQ8iU8kvUzCSsCEacxFhEmeb2JgPpQ5chdyw3UiTfUgapJBhBKu2R58FcyCP2RKyq</string> <!-- 4Cf2TfMKhCgJ2vsM3HeBUnYe52tXrvv8X1ajjuQEMUQ8iU8kvUzCSsCEacxFhEmeb2JgPpQ5chdyw3UiTfUgapJBhBKu2R58FcyCP2RKyq -->
+    <string name="my_pool">pool.supportxmr.com:3333</string> <!-- pool.supportxmr.com::3333 -->
     <string name="title_activity_borrar1">Borrar1</string>
     <string name="title_activity_borrar2">Borrar2</string>
 
