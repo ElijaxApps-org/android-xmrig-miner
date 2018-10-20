@@ -9,7 +9,7 @@ I updated dependencies (libuv-1.23.1 and xmrig-2.8.0-rc)and the project to Andro
 
 # Compile instructions
 
-Read and follow the instructions in gradle.properties.
+Read and follow the instructions in settings.gradle.
 
 
 # Dependencies
