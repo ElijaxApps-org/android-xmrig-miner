@@ -19,10 +19,10 @@ mkdir -p ../src/main/assets/arm64-v8a
 mkdir -p ../../app/src/main/cpp/xmrig-2.8.0-rc/src/libs
 mkdir -p ../../app/src/main/assets
 
-cp -f x86_64/Release/libuv.a ../src/main/assets/x86_64/libuv.a
-cp -f x86/Release/libuv.a ../src/main/assets/x86/libuv.a
-cp -f arm/Release/libuv.a ../src/main/assets/armeabi-v7a/libuv.a
-cp -f arm64/Release/libuv.a ../src/main/assets/arm64-v8a/libuv.a
+cp -f x86_64/Debug/libuv.a ../src/main/assets/x86_64/libuv.a
+cp -f x86/Debug/libuv.a ../src/main/assets/x86/libuv.a
+cp -f arm/Debug/libuv.a ../src/main/assets/armeabi-v7a/libuv.a
+cp -f arm64/Debug/libuv.a ../src/main/assets/arm64-v8a/libuv.a
 
 
 cp -rf ../src/main/assets/** ../../app/src/main/assets/xmrig-2.8.0-rc/src/libs

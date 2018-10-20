@@ -1,6 +1,38 @@
 apply plugin: 'com.android.application'
+
+boolean copyOnly = extensions.findByName('copyOnly')
+
+
+task makeDeps(type: Exec){
+    commandLine 'bash', '../libuv/libuv-1.23.1/BASHCOMPILE.sh'
+}
+
+task copyDeps(type: Exec){
+    commandLine 'bash', '../libuv/libuv-1.23.1/COPY.sh'
+}
+
+task deps(type: Exec){
+    if(copyOnly){
+        commandLine 'bash', '../libuv/libuv-1.23.1/COPY.sh'
+    } else {
+        commandLine 'bash', '../libuv/libuv-1.23.1/BASHCOMPILE.sh'
+        commandLine 'bash', '../libuv/libuv-1.23.1/COPY.sh'
+    }
+}
+
+
+project.tasks.getAt("preBuild").dependsOn deps
+
 android {
-    compileSdkVersion 28
+    signingConfigs {
+        config {
+            keyAlias 'key'
+            keyPassword 'n0s3d0nd3v1v0'
+            storeFile file('C:/Users/tooel/ASW/key/key.jks')
+            storePassword 'n0s3d0nd3v1v0'
+        }
+    }
+    compileSdkVersion 26
     splits {
 
         // Configures multiple APKs based on ABI.
@@ -29,17 +61,18 @@ android {
         }
         applicationId "androidminer.elijaxapps.com.androidminer"
         minSdkVersion 23
-        targetSdkVersion 28
-        versionCode 3
-        versionName "1.00"
+        targetSdkVersion 26
+        versionCode 4
+        versionName '1.01'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         externalNativeBuild {
             cmake {
                 arguments "-DUV_INCLUDE_DIR=src/main/cpp/xmrig-2.8.0-rc/include"
             }
         }
+        signingConfig signingConfigs.config
+        multiDexEnabled true //important
     }
-
     buildTypes {
 
         debug {
@@ -49,32 +82,31 @@ android {
             jniDebuggable true
         }
         release {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            debuggable false
-            jniDebuggable false
+            debuggable true
+            jniDebuggable true
         }
     }
-
     buildToolsVersion '28.0.3'
-
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
-    }
-    productFlavors {
     }
 
     externalNativeBuild {
         cmake {
             path file('src/main/cpp/xmrig-2.8.0-rc/CMakeLists.txt')
         }
+        exec{
+            commandLine 'bash', 'src/main/cpp/xmrig-2.8.0-rc/COPY.sh'
+        }
     }
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.google.android.gms:play-services-ads:17.0.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'

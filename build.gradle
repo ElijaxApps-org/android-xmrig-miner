@@ -29,7 +29,3 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
-task makeDeps(type: Exec){
-    commandLine 'bash', 'libuv/libuv-1.23.1/COPY.sh'
-    //commandLine 'bash', 'libuv/libuv-1.23.1/BASHCOMPILE.sh'
-}
