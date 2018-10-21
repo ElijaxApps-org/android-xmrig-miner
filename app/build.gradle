@@ -8,12 +8,10 @@ task copy(type: Exec, dependsOn: 'deps'){
         commandLine 'bash', '../libuv/libuv-1.23.1/COPY.sh'
 }
 
-task copyXMR(type: Exec){
+task copyXMR(type: Exec, dependsOn: 'externalNativeBuild'){
 	commandLine 'bash', 'src/main/cpp/xmrig-2.8.0-rc/COPY.sh'
 }
 
-project.tasks.getByName('externalNativeBuildDebug').dependsOn copyXMR
-project.tasks.getByName('externalNativeBuildRelease').dependsOn copyXMR
 project.tasks.getByName('preBuild').dependsOn deps
 
 android {
