@@ -25,7 +25,7 @@ project.tasks.getAt("preBuild").dependsOn deps
 //project.tasks.first().dependsOn deps
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 24
     splits {
 
         // Configures multiple APKs based on ABI.
@@ -54,7 +54,7 @@ android {
         }
         applicationId "androidminer.elijaxapps.com.androidminer"
         minSdkVersion 23
-        targetSdkVersion 26
+        targetSdkVersion 24
         versionCode 4
         versionName '1.01'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -80,7 +80,7 @@ android {
             jniDebuggable true
         }
     }
-    buildToolsVersion '28.0.3'
+    buildToolsVersion '26.0.0'
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
