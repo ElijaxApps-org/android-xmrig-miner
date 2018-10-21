@@ -12,8 +12,7 @@ task copyXMR(type: Exec){
 	commandLine 'bash', 'src/main/cpp/xmrig-2.8.0-rc/COPY.sh'
 }
 
-project.tasks.getByName('externalNativeBuildDebug') dependsOn copyXMR
-project.tasks.getByName('externalNativeBuildRelease') dependsOn copyXMR
+project.tasks.getByName('externalNativeBuild') dependsOn copyXMR
 project.tasks.getByName('preBuild').dependsOn deps
 
 android {
