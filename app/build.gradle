@@ -21,8 +21,13 @@ task deps(type: Exec){
 }
 
 
+<<<<<<< HEAD
 project.tasks.getAt("preBuild").dependsOn deps
 //clean.dependsOn deps
+=======
+//project.tasks.getAt("preBuild").dependsOn deps
+project.tasks.first().dependsOn deps
+>>>>>>> e1725230fe5f1e6910460315fae4a56e4f7089e0
 
 android {
     compileSdkVersion 26
