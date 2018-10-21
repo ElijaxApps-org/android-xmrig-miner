@@ -4,7 +4,7 @@ task deps(type: Exec){
         commandLine 'bash', '../libuv/libuv-1.23.1/BASHCOMPILE.sh'
 }
 
-task copy(type: Exec, dependsOn: deps){
+task copy(type: Exec, dependsOn: 'deps'){
         commandLine 'bash', '../libuv/libuv-1.23.1/COPY.sh'
 }
 
