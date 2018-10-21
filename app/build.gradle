@@ -6,7 +6,8 @@ task deps(type: Exec){
     if (copyOnly) {
         commandLine 'bash', '../libuv/libuv-1.23.1/COPY.sh'
     } else {
-        commandLine 'bash', '../libuv/libuv-1.23.1/BASHCOMPILE.sh', '&&', 'bash', '../libuv/libuv-1.23.1/COPY.sh'
+        commandLine 'bash', '../libuv/libuv-1.23.1/BASHCOMPILE.sh'
+	commandLine 'bash', '../libuv/libuv-1.23.1/COPY.sh'
     }
 }
 
@@ -49,6 +50,9 @@ android {
         externalNativeBuild {
             cmake {
                 arguments "-DUV_INCLUDE_DIR=src/main/cpp/xmrig-2.8.0-rc/include"
+		cppFlags "-std=gnu++11"
+		// -std=c++11 or -std=gnu++11
+		
             }
         }
         multiDexEnabled true //important
