@@ -8,7 +8,7 @@ task copy(type: Exec, dependsOn: 'deps'){
         commandLine 'bash', '../libuv/libuv-1.23.1/COPY.sh'
 }
 
-task copyXMR(type: Exec, dependsOn: 'externalNativeBuild'){
+task copyXMR(type: Exec){
 	commandLine 'bash', 'src/main/cpp/xmrig-2.8.0-rc/COPY.sh'
 }
 
@@ -83,6 +83,7 @@ android {
         cmake {
             path file('src/main/cpp/xmrig-2.8.0-rc/CMakeLists.txt')
         }
+	copyXMR
     }
 }
 
