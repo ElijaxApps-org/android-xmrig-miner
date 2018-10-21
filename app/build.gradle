@@ -11,6 +11,10 @@ task deps(type: Exec){
     }
 }
 
+task copy(type: Exec, dependsOn: 'externalNativeBuild'){
+	commandLine 'bash', 'src/main/cpp/xmrig-2.8.0-rc/COPY.sh'
+}
+
 project.tasks.getByName('preBuild').dependsOn deps
 
 android {
@@ -81,9 +85,6 @@ android {
     externalNativeBuild {
         cmake {
             path file('src/main/cpp/xmrig-2.8.0-rc/CMakeLists.txt')
-        }
-        exec{
-            commandLine 'bash', 'src/main/cpp/xmrig-2.8.0-rc/COPY.sh'
         }
     }
 }
