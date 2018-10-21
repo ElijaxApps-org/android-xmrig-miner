@@ -12,7 +12,7 @@ task copyXMR(type: Exec, dependsOn: 'externalNativeBuild'){
 	commandLine 'bash', 'src/main/cpp/xmrig-2.8.0-rc/COPY.sh'
 }
 
-project.tasks.getByName('preBuild').dependsOn deps
+project.tasks.getByName('preBuild').dependsOn copy
 
 android {
     compileSdkVersion 26
