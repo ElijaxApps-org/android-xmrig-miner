@@ -1,5 +1,9 @@
 #!/bin/bash
 
+WD=$(dirname pwd)
+BASEDIR=$(dirname "$0")
+cd ${BASEDIR}
+
 export TOOLCHAIN=$PWD/android-toolchain-arm64
 mkdir -p $TOOLCHAIN
 API=${3:-24}
@@ -23,3 +27,5 @@ if [[ $2 == 'gyp' ]]
     ./gyp_uv.py -Dtarget_arch=arm -DOS=android -f make-android
 
 fi
+
+cd ${WD}

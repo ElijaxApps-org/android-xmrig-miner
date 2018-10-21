@@ -1,3 +1,5 @@
-// true: Make dependencies always, false: only copies already compiled dependencies (libuv).
-extensions.add('copyOnly', false);
-include ':app', 'libuv'
+// false: Make dependencies always, true: only copies already compiled dependencies (libuv).
+
+
+include ':app', ':libuv'
+

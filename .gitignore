@@ -31,5 +31,3 @@ libuv/lib
 /app/release
 release
 fdroid/
-local.properties
-gradle/wrapper/gradle-wrapper.jar

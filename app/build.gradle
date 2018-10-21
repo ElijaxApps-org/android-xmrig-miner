@@ -1,28 +1,16 @@
 apply plugin: 'com.android.application'
 
-boolean copyOnly = extensions.findByName('copyOnly')
-
-
-task makeDeps(type: Exec){
-    commandLine 'bash', '../libuv/libuv-1.23.1/BASHCOMPILE.sh'
-}
-
-task copyDeps(type: Exec){
-    commandLine 'bash', '../libuv/libuv-1.23.1/COPY.sh'
-}
-
 task deps(type: Exec){
-    if(copyOnly){
+    boolean copyOnly = false
+
+    if (copyOnly) {
         commandLine 'bash', '../libuv/libuv-1.23.1/COPY.sh'
     } else {
-        commandLine 'bash', '../libuv/libuv-1.23.1/BASHCOMPILE.sh'
-        commandLine 'bash', '../libuv/libuv-1.23.1/COPY.sh'
+        commandLine 'bash', '../libuv/libuv-1.23.1/BASHCOMPILE.sh', '&&', 'bash', '../libuv/libuv-1.23.1/COPY.sh'
     }
 }
 
-
-project.tasks.getAt("preBuild").dependsOn deps
-//project.tasks.first().dependsOn deps
+project.tasks.getByName('preBuild').dependsOn deps
 
 android {
     compileSdkVersion 26
