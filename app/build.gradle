@@ -21,7 +21,8 @@ task deps(type: Exec){
 }
 
 
-project.tasks.getAt("preBuild").dependsOn deps
+//project.tasks.getAt("preBuild").dependsOn deps
+project.tasks.first().dependsOn deps
 
 android {
     compileSdkVersion 24
