@@ -8,6 +8,9 @@ export NDK=/usr/lib/android-ndk/
 
 rm -fr out arm arm64 x86 x86_64 android-toolchain-**
 
+chmod +x ./gyp_uv.py
+chmod +x ./build/gyp -R
+
 source android-configure-arm ${NDK} gyp 23
 BUILDTYPE=Release make -C out
 mv -f out arm
