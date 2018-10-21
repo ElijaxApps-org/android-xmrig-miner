@@ -31,3 +31,4 @@ libuv/lib
 /app/release
 release
 fdroid/
+local.properties
