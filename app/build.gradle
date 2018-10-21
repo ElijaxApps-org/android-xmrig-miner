@@ -1,17 +1,14 @@
 apply plugin: 'com.android.application'
 
 task deps(type: Exec){
-    boolean copyOnly = false
-
-    if (copyOnly) {
-        commandLine 'bash', '../libuv/libuv-1.23.1/COPY.sh'
-    } else {
         commandLine 'bash', '../libuv/libuv-1.23.1/BASHCOMPILE.sh'
-	commandLine 'bash', '../libuv/libuv-1.23.1/COPY.sh'
-    }
 }
 
-task copy(type: Exec, dependsOn: 'externalNativeBuild'){
+task copy(type: Exec, dependsOn: deps){
+        commandLine 'bash', '../libuv/libuv-1.23.1/COPY.sh'
+}
+
+task copyXMR(type: Exec, dependsOn: 'externalNativeBuild'){
 	commandLine 'bash', 'src/main/cpp/xmrig-2.8.0-rc/COPY.sh'
 }
 
