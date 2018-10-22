@@ -1,10 +1,10 @@
 package com.elijaxapps.androidminer;
-
+/*
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
-
+*/
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
@@ -13,18 +13,18 @@ import android.view.MenuItem;
 
 public class IntersticialActivity extends Activity {
     private static final String BANNER_AD_ID = "ca-app-pub-7452939419560645/3623954709";
-    private static InterstitialAd mInterstitialAd;
+    //private static InterstitialAd mInterstitialAd;
     private Activity activity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getActionBar().hide();
-        MobileAds.initialize(this, getString(R.string.admob_app_id));
+        //MobileAds.initialize(this, getString(R.string.admob_app_id));
 
         activity = this;
 
-        Tools.goToNextLevel(activity, new AdListener());
+        //Tools.goToNextLevel(activity, new AdListener());
 
         Intent i = new Intent (getApplicationContext(), LauncherActivity.class);
         startActivity(i);
@@ -53,7 +53,7 @@ public class IntersticialActivity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
-
+/**
     private static InterstitialAd newInterstitialAd(Activity thizz, AdListener adListener) {
         InterstitialAd interstitialAd = new InterstitialAd(thizz);
         interstitialAd.setAdUnitId(BANNER_AD_ID);
@@ -83,4 +83,5 @@ public class IntersticialActivity extends Activity {
         mInterstitialAd = newInterstitialAd(context, listener);
         loadInterstitial();
     }
+*/
 }

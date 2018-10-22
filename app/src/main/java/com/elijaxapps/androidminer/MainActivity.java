@@ -25,7 +25,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.res.Configuration;
-import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -41,20 +40,17 @@ import android.widget.ScrollView;
 import android.widget.Scroller;
 import android.widget.TextView;
 import android.widget.Toast;
-
+/*
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
-
-import java.text.BreakIterator;
+*/
 import java.util.Arrays;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-
-import static java.lang.Thread.*;
 
 public class MainActivity extends Activity {
 
@@ -91,15 +87,17 @@ public class MainActivity extends Activity {
 
     protected Button start, stop;
     protected MainActivity activity;
-    protected InterstitialAd mInterstitialAd;
+    //protected InterstitialAd mInterstitialAd;
     protected PowerManager.WakeLock wl;
+    /*
     protected AdView adView;
+     */
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        MobileAds.initialize(this, getString(R.string.admob_app_id));
+        //MobileAds.initialize(this, getString(R.string.admob_app_id));
         PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
         wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "AndroidMiner:Mining");
 
@@ -148,17 +146,18 @@ public class MainActivity extends Activity {
             // this flag will keep the start button disabled
             validArchitecture = false;
         }
-
+        /*
         try {
             adViewShow();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        */
         // run the service
         Intent intent = new Intent(this, MiningService.class);
         createServerConnection(intent);
     }
-
+/*
     protected void adViewShow() throws InterruptedException {
        // if(adView==null) {
             adView = findViewById(R.id.adView);
@@ -170,7 +169,7 @@ public class MainActivity extends Activity {
             }
         //}
     }
-
+*/
     protected void createServerConnection(Intent intent) {
             serverConnection = new ServiceConnection() {
                 @Override
@@ -182,14 +181,18 @@ public class MainActivity extends Activity {
                             if(!wl.isHeld()) {
                                 wl.acquire();
                             }
-                            Tools.goToNextLevel(activity, new AdListener());
+                            /*
+                                Tools.goToNextLevel(activity, new AdListener());
+                             */
                         });
                         stop.setOnClickListener(v -> {
                             stopMining(v);
                             if(wl.isHeld()){
                                 wl.release();
                             }
-                            Tools.ads(activity, new AdListener());
+                            /*
+                                Tools.ads(activity, new AdListener());
+                             */
                         });
 
                         int cores = binder.getService().getAvailableCores();
@@ -240,7 +243,9 @@ public class MainActivity extends Activity {
     @Override
     protected void onResume() {
 
+        /*
         adView.resume();
+         */
         svc = Executors.newSingleThreadScheduledExecutor();
         svc.scheduleWithFixedDelay(this::updateLog, 1, 1, TimeUnit.SECONDS);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
@@ -300,11 +305,13 @@ public class MainActivity extends Activity {
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
+        /*
         try {
             adViewShow();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        */
         super.onConfigurationChanged(newConfig);
 
     }
