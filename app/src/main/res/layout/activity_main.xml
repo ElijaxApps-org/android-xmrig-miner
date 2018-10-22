@@ -15,10 +15,7 @@
         layout="@layout/content_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_constraintBottom_toTopOf="@+id/adView"
-        android:layout_constraintEnd_toEndOf="parent"
-        android:layout_constraintStart_toStartOf="parent"
-        android:layout_constraintTop_toTopOf="parent" />
+     />
 
     <!--
     <com.google.android.gms.ads.AdView
