@@ -1,8 +1,8 @@
 package com.elijaxapps.androidminer;
-
+/*
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.MobileAds;
-
+*/
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
@@ -19,7 +19,7 @@ public class LauncherActivity extends Activity {
         super.onCreate(savedInstanceState);
         getActionBar().hide();
         setContentView(R.layout.activity_launcher);
-        MobileAds.initialize(this, getString(R.string.admob_app_id));
+        //MobileAds.initialize(this, getString(R.string.admob_app_id));
         activity = this;
         // Toasts the test ad message on the screen. Remove this after defining your own ad unit ID.
         //Toast.makeText(this, TOAST_TEXT, Toast.LENGTH_LONG).show();
@@ -76,7 +76,7 @@ public class LauncherActivity extends Activity {
                 i.putExtra("pool", pool);
 
                 startActivity(i, savedInstanceState);
-
+/*
                 Tools.ads(activity, new AdListener(){
                     @Override
                     public void onAdClicked() {
@@ -93,6 +93,7 @@ public class LauncherActivity extends Activity {
                         super.onAdClosed();
                     }
                 });
+*/
         });
     }
 

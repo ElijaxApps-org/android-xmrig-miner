@@ -157,7 +157,7 @@ else()
         )
 
     #set(EXTRA_LIBS pthread rt dl)
-    set(EXTRA_LIBS dl)
+    set(EXTRA_LIBS dl atomic)
 endif()
 
 if (CMAKE_SYSTEM_NAME STREQUAL FreeBSD)

@@ -25,7 +25,7 @@ cp -f arm/Release/libuv.a ../src/main/assets/armeabi-v7a/libuv.a
 cp -f arm64/Release/libuv.a ../src/main/assets/arm64-v8a/libuv.a
 
 
-cp -rf ../src/main/assets/** ../../app/src/main/assets/xmrig-2.8.0-rc/src/libs
+cp -rf ../src/main/assets/** ../../app/src/main/cpp/xmrig-2.8.0-rc/src/libs
 cp -rf ../src/main/assets/** ../../app/src/main/assets
 
 cd ${WD}

@@ -24,8 +24,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-
+/*
 import com.google.android.gms.ads.AdListener;
+ */
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -167,7 +168,7 @@ public class Tools {
         return output;
 
     }
-
+/*
     public static void goToNextLevel(Activity context, AdListener listener) {
         if (!isProInstalled(context)) {
             IntersticialActivity.goToNextLevel(context, listener);
@@ -190,4 +191,5 @@ public class Tools {
             }
         }
     }
+*/
 }

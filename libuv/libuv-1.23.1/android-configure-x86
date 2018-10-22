@@ -1,5 +1,4 @@
 #!/bin/bash
-
 export TOOLCHAIN=$PWD/android-toolchain-x86
 mkdir -p $TOOLCHAIN
 API=${3:-24}

@@ -4,27 +4,29 @@ WD=$(dirname pwd)
 BASEDIR=$(dirname "$0")
 cd ${BASEDIR}
 
-export NDK=~/android-ndk/
+export NDK=/usr/lib/android-ndk/
 
 rm -fr out arm arm64 x86 x86_64 android-toolchain-**
 
+chmod +x ./gyp_uv.py
+chmod +x ./build/gyp -R
+
 source android-configure-arm ${NDK} gyp 23
+BUILDTYPE=Release make -C out
 mv -f out arm
-BUILDTYPE=Release make -C arm &
 
 
 source android-configure-arm64 ${NDK} gyp 23
+BUILDTYPE=Release make -C out
 mv -f out arm64
-BUILDTYPE=Release make -C arm64 &
-
 
 source android-configure-x86 ${NDK} gyp 23
+BUILDTYPE=Release make -C out
 mv -f out x86
-BUILDTYPE=Release make -C x86 &
 
 source android-configure-x86_64 ${NDK} gyp 23
+BUILDTYPE=Release make -C out
 mv -f out x86_64
-BUILDTYPE=Release make -C x86_64 &
 
 cd ${WD}
 

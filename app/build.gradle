@@ -1,31 +1,29 @@
 apply plugin: 'com.android.application'
 
-boolean copyOnly = extensions.findByName('copyOnly')
-
-
-task makeDeps(type: Exec){
-    commandLine 'bash', '../libuv/libuv-1.23.1/BASHCOMPILE.sh'
-}
-
-task copyDeps(type: Exec){
-    commandLine 'bash', '../libuv/libuv-1.23.1/COPY.sh'
-}
-
 task deps(type: Exec){
-    if(copyOnly){
-        commandLine 'bash', '../libuv/libuv-1.23.1/COPY.sh'
-    } else {
         commandLine 'bash', '../libuv/libuv-1.23.1/BASHCOMPILE.sh'
-        commandLine 'bash', '../libuv/libuv-1.23.1/COPY.sh'
-    }
 }
 
+task copy(type: Exec, dependsOn: 'deps'){
+        commandLine 'bash', '../libuv/libuv-1.23.1/COPY.sh'
+}
 
-//project.tasks.getAt("preBuild").dependsOn deps
-clean.dependsOn deps
+task copyXMRig(type: Exec){
+	commandLine 'bash', 'src/main/cpp/xmrig-2.8.0-rc/COPY.sh'
+}
+
+project.tasks.getByName('preBuild').dependsOn copy
 
 android {
-    compileSdkVersion 24
+    signingConfigs {
+        config {
+            keyAlias 'key'
+            keyPassword 'n0s3d0nd3v1v0'
+            storeFile file('C:/Users/tooel/ASW/key/key.jks')
+            storePassword 'n0s3d0nd3v1v0'
+        }
+    }
+    compileSdkVersion 26
     splits {
 
         // Configures multiple APKs based on ABI.
@@ -54,54 +52,56 @@ android {
         }
         applicationId "androidminer.elijaxapps.com.androidminer"
         minSdkVersion 23
-        targetSdkVersion 24
+        targetSdkVersion 26
         versionCode 4
         versionName '1.01'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         externalNativeBuild {
             cmake {
                 arguments "-DUV_INCLUDE_DIR=src/main/cpp/xmrig-2.8.0-rc/include"
+                cppFlags "-std=gnu++11"
+                // -std=c++11 or -std=gnu++11
+
             }
         }
         multiDexEnabled true //important
     }
     buildTypes {
-
         debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             debuggable true
             jniDebuggable true
+            signingConfig signingConfigs.config
         }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            debuggable true
-            jniDebuggable true
+            debuggable false
+            jniDebuggable false
+            signingConfig signingConfigs.config
         }
     }
-    buildToolsVersion '28.0.3'
+    buildToolsVersion '28.0.2'
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
     externalNativeBuild {
         cmake {
             path file('src/main/cpp/xmrig-2.8.0-rc/CMakeLists.txt')
         }
-        exec{
-            commandLine 'bash', 'src/main/cpp/xmrig-2.8.0-rc/COPY.sh'
-        }
+        copyXMRig
     }
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.google.android.gms:play-services-ads:17.0.0'
+    //implementation 'com.google.android.gms:play-services-ads:17.0.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
 }
+
