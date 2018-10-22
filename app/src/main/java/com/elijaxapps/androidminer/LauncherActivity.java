@@ -1,8 +1,8 @@
 package com.elijaxapps.androidminer;
-
+/*
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.MobileAds;
-
+*/
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
