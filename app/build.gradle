@@ -69,8 +69,8 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            debuggable true
-            jniDebuggable true
+            debuggable false
+            jniDebuggable false
         }
     }
     buildToolsVersion '28.0.2'
