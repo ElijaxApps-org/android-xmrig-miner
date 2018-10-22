@@ -167,7 +167,7 @@ public class Tools {
         return output;
 
     }
-
+/*
     public static void goToNextLevel(Activity context, AdListener listener) {
         if (!isProInstalled(context)) {
             IntersticialActivity.goToNextLevel(context, listener);
@@ -190,4 +190,5 @@ public class Tools {
             }
         }
     }
+*/
 }
