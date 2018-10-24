@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-
+/*
 task buildDeps(type: Exec){
         commandLine 'bash', '../libuv/libuv-1.23.1/BASHCOMPILE.sh'
 }
@@ -10,10 +10,7 @@ task copyDeps(type: Exec, dependsOn: 'buildDeps'){
 
 project.tasks.getByName('preBuild').dependsOn copyDeps
 
-
-task copyXMRig(type: Exec){
-    commandLine 'bash', 'src/main/cpp/xmrig-2.8.3/COPY.sh'
-}
+*/
 
 android {
     compileSdkVersion 26
@@ -51,7 +48,7 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         externalNativeBuild {
             cmake {
-                arguments "-DUV_INCLUDE_DIR=src/main/cpp/xmrig-2.8.0-rc/include"
+                arguments "-DUV_INCLUDE_DIR=src/main/cpp/xmrig-2.8.3/include"
                 cppFlags "-std=gnu++11"
                 // -std=c++11 or -std=gnu++11
 
@@ -78,12 +75,19 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     externalNativeBuild {
         cmake {
             path file('src/main/cpp/xmrig-2.8.3/CMakeLists.txt')
         }
-        copyXMRig
     }
+
+
+    task copyXMRig(type: Exec){
+        commandLine 'bash', 'src/main/cpp/xmrig-2.8.3/COPY.sh'
+    }
+
+    copyXMRig
 }
 
 dependencies {
