@@ -74,7 +74,7 @@
 
             <EditText
                 android:id="@+id/username"
-                android:layout_width="320dp"
+                android:layout_width="@dimen/item_width"
                 android:layout_height="match_parent"
                 android:autofillHints="@string/my_wallet"
                 android:inputType="text"
