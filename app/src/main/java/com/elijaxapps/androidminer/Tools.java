@@ -19,26 +19,30 @@
 
 package com.elijaxapps.androidminer;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-/*
-import com.google.android.gms.ads.AdListener;
- */
+import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+/*
+import com.google.android.gms.ads.AdListener;
+ */
 
 /**
  * Created by uwe on 19.01.18.
@@ -58,14 +62,15 @@ public class Tools {
 
     /**
      * load the config.json template file
+     *
      * @param context
      * @return
      * @throws IOException
      */
-    public static String loadConfigTemplate(Context context)  {
+    public static String loadConfigTemplate(Context context, String filename) {
         try {
             StringBuilder buf = new StringBuilder();
-            InputStream json = context.getAssets().open("config.json");
+            InputStream json = context.getAssets().open(filename);
             BufferedReader in = new BufferedReader(new InputStreamReader(json, "UTF-8"));
             String str;
 
@@ -82,6 +87,7 @@ public class Tools {
 
     /**
      * copy a file from the assets to a local path
+     *
      * @param context
      * @param assetFilePath
      * @param localFilePath
@@ -108,29 +114,36 @@ public class Tools {
 
     /**
      * write a config.json using the template and the given values
+     *
      * @param configTemplate
      * @param poolUrl
      * @param username
      * @param privatePath
+     * @param aes
+     * @param pages
+     * @param safe
      * @throws IOException
      */
-    public static void writeConfig(String configTemplate, String poolUrl, String username, int threads, int maxCpu, String privatePath) {
-        String config = configTemplate.replace("$url$",poolUrl)
-                .replace("$username$",username)
+    public static void writeConfig(String configTemplate, String poolUrl, String username, int threads, int maxCpu, String privatePath, boolean aes, boolean pages, boolean safe) {
+        String config = configTemplate.replace("$url$", poolUrl)
+                .replace("$username$", username)
                 .replace("$threads$", Integer.toString(threads))
-                .replace("$maxcpu$", Integer.toString(maxCpu));
+                .replace("$maxcpu$", Integer.toString(maxCpu))
+                .replace("$aes$", Boolean.toString(aes))
+                .replace("$pages$", Boolean.toString(pages))
+                .replace("$safe$", Boolean.toString(safe));
         PrintWriter writer = null;
         try {
-            writer = new PrintWriter(new FileOutputStream(privatePath+"/config.json"));
+            writer = new PrintWriter(new FileOutputStream(privatePath + "/config.json"));
             writer.write(config);
         } catch (IOException e) {
-            throw  new RuntimeException(e);
+            throw new RuntimeException(e);
         } finally {
             if (writer != null) writer.close();
         }
     }
 
-    public static Map<String, String> getCPUInfo ()   {
+    public static Map<String, String> getCPUInfo() {
 
         Map<String, String> output = new HashMap<>();
 
@@ -140,27 +153,27 @@ public class Tools {
 
             String str;
 
-            while ((str = br.readLine ()) != null) {
+            while ((str = br.readLine()) != null) {
 
-                String[] data = str.split (":");
+                String[] data = str.split(":");
 
                 if (data.length > 1) {
 
-                    String key = data[0].trim ().replace (" ", "_");
-                    if (key.equals ("model_name")) key = "cpu_model";
+                    String key = data[0].trim().replace(" ", "_");
+                    if (key.equals("model_name")) key = "cpu_model";
 
-                    String value = data[1].trim ();
+                    String value = data[1].trim();
 
-                    if (key.equals ("cpu_model"))
-                        value = value.replaceAll ("\\s+", " ");
+                    if (key.equals("cpu_model"))
+                        value = value.replaceAll("\\s+", " ");
 
-                    output.put (key, value);
+                    output.put(key, value);
 
                 }
 
             }
 
-            br.close ();
+            br.close();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -168,6 +181,7 @@ public class Tools {
         return output;
 
     }
+
 /*
     public static void goToNextLevel(Activity context, AdListener listener) {
         if (!isProInstalled(context)) {

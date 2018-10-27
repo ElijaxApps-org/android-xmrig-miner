@@ -10,6 +10,7 @@ task copyDeps(type: Exec, dependsOn: 'buildDeps'){
 
 project.tasks.getByName('preBuild').dependsOn copyDeps
 
+
 android {
     compileSdkVersion 26
     splits {
