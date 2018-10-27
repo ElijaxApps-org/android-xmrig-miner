@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_alignParentTop="false"
     android:layout_gravity="top|bottom|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|start|end"
     android:layout_margin="32dp"
     android:layout_marginTop="0dp"
+    android:orientation="horizontal"
     android:theme="@style/AppTheme"
     android:visibility="visible"
     tools:context="com.elijaxapps.androidminer.MainActivity">
@@ -21,78 +22,66 @@
         android:visibility="visible">
 
         <LinearLayout
-            android:id="@+id/linearpool"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:labelFor="@+id/pool"
-                android:text="@string/mining_pool_address"
-                android:textSize="14sp" />
-
-            <EditText
-                android:id="@+id/pool"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:autofillHints="@string/my_pool"
-                android:inputType="text"
-                android:text="@string/my_pool"
-                android:textSize="12sp"
-                tools:targetApi="o" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linearusername"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:gravity="center|start"
             android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:id="@+id/linearusername"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="start"
                     android:layout_weight="1"
                     android:labelFor="@id/username"
                     android:text="@string/username" />
 
-                <CheckBox
-                    android:id="@+id/use_worker_id"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="true"
-                    android:text="@string/use_worker_id" />
 
+                <EditText
+                    android:id="@+id/username"
+                    android:layout_width="320dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="fill_vertical|fill_horizontal|fill|start"
+                    android:autofillHints="@string/my_wallet"
+                    android:inputType="text"
+                    android:text="@string/my_wallet"
+                    android:textSize="12sp"
+                    tools:targetApi="o" />
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/linearpool"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/username"
-                android:layout_width="320dp"
-                android:layout_height="match_parent"
-                android:autofillHints="@string/my_wallet"
-                android:inputType="text"
-                android:text="@string/my_wallet"
-                android:textSize="12sp"
-                tools:targetApi="o" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:labelFor="@+id/pool"
+                    android:text="@string/mining_pool_address"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/pool"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="@string/my_pool"
+                    android:inputType="text"
+                    android:text="@string/my_pool"
+                    android:textSize="12sp"
+                    tools:targetApi="o" />
+            </LinearLayout>
+
         </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/lin2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="16dp"
-        android:orientation="vertical"
-        android:visibility="visible">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -153,84 +142,153 @@
 
         </LinearLayout>
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lin2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical"
+        android:visibility="visible">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/actual"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
-                android:text="@string/zero"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/slash"
+                <TextView
+                    android:id="@+id/actual"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/zero"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+                <TextView
+                    android:id="@+id/slash"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/slash"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+                <TextView
+                    android:id="@+id/speed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/zero"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:text="@string/hpers"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+                <TextView
+                    android:id="@+id/accepted"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/zero"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:labelFor="@+id/accepted"
+                    android:text="@string/accepted"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textColor="#00FF00" />
+
+                <TextView
+                    android:id="@+id/rejected"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/zero"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:labelFor="@id/rejected"
+                    android:text="@string/rejected"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textColor="#FF0000" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
-                android:text="@string/slash"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/speed"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
-                android:text="@string/zero"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:text="@string/hpers"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+                    <CheckBox
+                        android:id="@+id/use_worker_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:checked="true"
+                        android:text="@string/use_worker_id" />
 
-            <TextView
-                android:id="@+id/accepted"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                    <CheckBox
+                        android:id="@+id/safe"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:text="@string/safe_mode" />
 
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="5dp"
-                android:text="@string/zero"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+                </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:labelFor="@+id/accepted"
-                android:text="@string/accepted"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textColor="#00FF00" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/rejected"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="5dp"
-                android:text="@string/zero"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+                    <CheckBox
+                        android:id="@+id/aes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:text="@string/hw_aes" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:labelFor="@id/rejected"
-                android:text="@string/rejected"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textColor="#FF0000" />
+                    <CheckBox
+                        android:id="@+id/pages"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:text="@string/huge_pages" />
+
+                </LinearLayout>
+            </LinearLayout>
 
         </LinearLayout>
 
         <ScrollView
             android:id="@+id/scrollView"
             android:layout_width="match_parent"
-            android:layout_height="@android:dimen/notification_large_icon_height"
+            android:layout_height="@android:dimen/notification_large_icon_width"
             android:layout_gravity="fill"
             android:fadeScrollbars="false"
             android:fillViewport="true"
@@ -295,7 +353,6 @@
         </LinearLayout>
 
     </LinearLayout>
-
 
 </LinearLayout>
 

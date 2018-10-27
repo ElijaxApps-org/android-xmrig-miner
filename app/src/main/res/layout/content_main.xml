@@ -16,83 +16,72 @@
         android:id="@+id/lin1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="top"
+        android:layout_gravity="center"
         android:layout_marginTop="32dp"
         android:orientation="vertical"
         android:visibility="visible">
 
         <LinearLayout
-            android:id="@+id/linearpool"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:labelFor="@+id/pool"
-                android:text="@string/mining_pool_address"
-                android:textSize="14sp" />
-
-            <EditText
-                android:id="@+id/pool"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:autofillHints="@string/my_pool"
-                android:inputType="text"
-                android:text="@string/my_pool"
-                android:textSize="12sp"
-                tools:targetApi="o" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linearusername"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:gravity="center|start"
             android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:id="@+id/linearusername"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="start"
                     android:layout_weight="1"
                     android:labelFor="@id/username"
                     android:text="@string/username" />
 
-                <CheckBox
-                    android:id="@+id/use_worker_id"
-                    android:layout_width="wrap_content"
+
+                <EditText
+                    android:id="@+id/username"
+                    android:layout_width="320dp"
                     android:layout_height="wrap_content"
-                    android:checked="true"
-                    android:text="@string/use_worker_id" />
+                    android:layout_gravity="fill_vertical|fill_horizontal|fill|start"
+                    android:autofillHints="@string/my_wallet"
+                    android:inputType="text"
+                    android:text="@string/my_wallet"
+                    android:textSize="12sp"
+                    tools:targetApi="o" />
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/linearpool"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/username"
-                android:layout_width="320dp"
-                android:layout_height="match_parent"
-                android:autofillHints="@string/my_wallet"
-                android:inputType="text"
-                android:text="@string/my_wallet"
-                android:textSize="12sp"
-                tools:targetApi="o" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:labelFor="@+id/pool"
+                    android:text="@string/mining_pool_address"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/pool"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="@string/my_pool"
+                    android:inputType="text"
+                    android:text="@string/my_pool"
+                    android:textSize="12sp"
+                    tools:targetApi="o" />
+            </LinearLayout>
+
         </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/lin2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="16dp"
-        android:orientation="vertical"
-        android:visibility="visible">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -152,6 +141,70 @@
                 android:text="@string/percent" />
 
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:gravity="center|start"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/use_worker_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:checked="true"
+                    android:text="@string/use_worker_id" />
+
+                <CheckBox
+                    android:id="@+id/safe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:text="@string/safe_mode" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:gravity="center|start"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/aes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:text="@string/hw_aes" />
+
+                <CheckBox
+                    android:id="@+id/pages"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:text="@string/huge_pages" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lin2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical"
+        android:visibility="visible">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -230,7 +283,7 @@
         <ScrollView
             android:id="@+id/scrollView"
             android:layout_width="match_parent"
-            android:layout_height="@android:dimen/notification_large_icon_height"
+            android:layout_height="@android:dimen/notification_large_icon_width"
             android:layout_gravity="fill"
             android:fadeScrollbars="false"
             android:fillViewport="true"

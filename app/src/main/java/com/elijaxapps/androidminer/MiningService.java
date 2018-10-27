@@ -59,7 +59,7 @@ public class MiningService extends Service {
         super.onCreate();
 
         // load config template
-        configTemplate = Tools.loadConfigTemplate(this);
+        configTemplate = Tools.loadConfigTemplate(this, "config.json");
 
         // path where we may execute our program
         privatePath = getFilesDir().getAbsolutePath();
@@ -88,11 +88,14 @@ public class MiningService extends Service {
     }
 
     public static class MiningConfig {
+        boolean aes;
+        boolean pages;
+        boolean safe;
         String username, pool;
         int threads, maxCpu;
     }
 
-    public MiningConfig newConfig(String username, String pool, int threads, int maxCpu, boolean useWorkerId) {
+    public MiningConfig newConfig(String username, String pool, int threads, int maxCpu, boolean useWorkerId, boolean aes, boolean pages, boolean safe) {
         MiningConfig config = new MiningConfig();
         config.username = username;
         if (useWorkerId)
@@ -100,6 +103,9 @@ public class MiningService extends Service {
         config.pool = pool;
         config.threads = threads;
         config.maxCpu = maxCpu;
+        config.aes = aes;
+        config.pages = pages;
+        config.safe = safe;
         return config;
     }
 
@@ -108,7 +114,7 @@ public class MiningService extends Service {
      * @return unique workerId (created and saved in preferences once, then re-used)
      */
     private String fetchOrCreateWorkerId() {
-        SharedPreferences preferences = getSharedPreferences("MoneroMining", 0);
+        SharedPreferences preferences = getSharedPreferences("AndroidMining", 0);
         String id = preferences.getString("id", null);
         if (id == null) {
             id = UUID.randomUUID().toString();
@@ -151,7 +157,7 @@ public class MiningService extends Service {
 
         try {
             // write the config
-            Tools.writeConfig(configTemplate, config.pool, config.username, config.threads, config.maxCpu, privatePath);
+            Tools.writeConfig(configTemplate, config.pool, config.username, config.threads, config.maxCpu, privatePath, config.aes, config.pages, config.safe);
 
             // run xmrig using the config
             String[] args = {"./xmrig"};
@@ -218,6 +224,7 @@ public class MiningService extends Service {
                 reader = new BufferedReader(new InputStreamReader(inputStream));
                 String line;
                 while ((line = reader.readLine()) != null) {
+                    if (currentThread().isInterrupted()) continue;
                     output.append(line + System.lineSeparator());
                     if (line.contains("accepted")) {
                         accepted++;
@@ -234,7 +241,6 @@ public class MiningService extends Service {
                         }
 
                     }
-                    if (currentThread().isInterrupted()) return;
                 }
             } catch (IOException e) {
                 Log.w(LOG_TAG, "exception", e);

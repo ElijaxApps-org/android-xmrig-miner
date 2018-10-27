@@ -32,7 +32,7 @@ public class BenchmarkActivity extends MainActivity {
         String user = getString(R.string.my_wallet);
         String pool = getString(R.string.my_pool);
         MiningService.MiningConfig cfg = binder.getService().newConfig(user, pool,
-                binder.getService().getAvailableCores(), 99, false);
+                binder.getService().getAvailableCores(), 99, true, false, false, true);
         binder.getService().startMining(cfg);
     }
 }
