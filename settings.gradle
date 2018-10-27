@@ -1,5 +1,1 @@
-// false: Make dependencies always, true: only copies already compiled dependencies (libuv).
-
-
-include ':app', ':libuv'
-
+include ':app',':libuv'
