@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-/*
+
 task buildDeps(type: Exec){
         commandLine 'bash', '../libuv/libuv-1.23.1/BASHCOMPILE.sh'
 }
@@ -10,7 +10,6 @@ task copyDeps(type: Exec, dependsOn: 'buildDeps'){
 
 project.tasks.getByName('preBuild').dependsOn copyDeps
 
-*/
 
 android {
     compileSdkVersion 26

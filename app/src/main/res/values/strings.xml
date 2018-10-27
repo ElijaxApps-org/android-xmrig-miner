@@ -13,7 +13,7 @@
     <string name="hpers">H/s</string>
     <string name="accepted">accepted</string>
     <string name="cpus">Cores</string>
-    <string name="use_worker_id">add worker id</string>
+    <string name="use_worker_id">Miner ID</string>
     <string name="title_activity_launcher">Launcher</string>
     <string name="benchmark">Benchmark</string>
 
@@ -55,8 +55,7 @@
     <string name="admob_app_id">ca-app-pub-7452939419560645~5212368545</string>
     <string name="ad_unit_banner_large">ca-app-pub-7452939419560645/3314054822</string>
     <string name="algorithm">Algorithm</string>
-
-    <array name="algos">
-        <item name="cryptonight">Cryptonight</item>
-    </array>
+    <string name="huge_pages">Huge Pages</string>
+    <string name="safe_mode">Safe mode</string>
+    <string name="hw_aes">HW-AES</string>
 </resources>
