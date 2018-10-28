@@ -4,7 +4,7 @@ WD=$(dirname pwd)
 BASEDIR=$(dirname "$0")
 cd ${BASEDIR}
 
-export NDK=/usr/lib/android-ndk/
+#export NDK=/usr/lib/android-ndk/
 
 rm -fr out arm arm64 x86 x86_64 android-toolchain-**
 
