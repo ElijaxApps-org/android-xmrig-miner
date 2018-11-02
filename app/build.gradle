@@ -38,11 +38,11 @@ android {
             sourceCompatibility JavaVersion.VERSION_1_8
             targetCompatibility JavaVersion.VERSION_1_8
         }
-        applicationId "androidminer.elijaxapps.com.androidminer"
+        applicationId "org.elijax.androidxmrigminer"
         minSdkVersion 23
         targetSdkVersion 26
-        versionCode 4
-        versionName '1.01'
+        versionCode 5
+        versionName '1.02'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         externalNativeBuild {
             cmake {
