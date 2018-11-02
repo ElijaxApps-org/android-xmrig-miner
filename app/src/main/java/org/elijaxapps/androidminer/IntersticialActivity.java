@@ -1,4 +1,4 @@
-package com.elijaxapps.androidminer;
+package org.elijaxapps.androidminer;
 /*
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;

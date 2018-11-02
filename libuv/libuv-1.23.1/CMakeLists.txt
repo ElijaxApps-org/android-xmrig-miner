@@ -1,6 +1,6 @@
 # TODO: determine CMAKE_SYSTEM_NAME on OS/390.  Currently assumes "OS/390".
 cmake_minimum_required(VERSION 3.0)
-project(libuv)
+project(libuv.a)
 enable_testing()
 
 if(MSVC)

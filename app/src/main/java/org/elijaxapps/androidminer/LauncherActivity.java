@@ -1,4 +1,4 @@
-package com.elijaxapps.androidminer;
+package org.elijaxapps.androidminer;
 /*
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.MobileAds;
@@ -13,7 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import static com.elijaxapps.androidminer.IntersticialActivity.getBundle;
+import static org.elijaxapps.androidminer.IntersticialActivity.getBundle;
 
 public class LauncherActivity extends Activity {
     private Button create, benchmark;

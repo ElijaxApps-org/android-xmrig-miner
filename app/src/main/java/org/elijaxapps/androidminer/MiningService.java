@@ -17,7 +17,7 @@
  * /
  */
 
-package com.elijaxapps.androidminer;
+package org.elijaxapps.androidminer;
 
 import android.app.Service;
 import android.content.Intent;

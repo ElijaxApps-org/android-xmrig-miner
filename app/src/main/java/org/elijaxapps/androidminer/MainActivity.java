@@ -16,7 +16,7 @@
  *    along with this program. If not, see <http://www.gnu.org/licenses/>.
  * /
  */
-package com.elijaxapps.androidminer;
+package org.elijaxapps.androidminer;
 
 import android.app.Activity;
 import android.content.ComponentName;
@@ -46,8 +46,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-import static com.elijaxapps.androidminer.IntersticialActivity.getBundle;
-import static com.elijaxapps.androidminer.IntersticialActivity.getPersistableBundle;
+import static org.elijaxapps.androidminer.IntersticialActivity.getBundle;
+import static org.elijaxapps.androidminer.IntersticialActivity.getPersistableBundle;
 
 /*
 import com.google.android.gms.ads.AdListener;

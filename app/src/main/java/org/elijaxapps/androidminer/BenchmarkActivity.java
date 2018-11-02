@@ -1,4 +1,4 @@
-package com.elijaxapps.androidminer;
+package org.elijaxapps.androidminer;
 
 import android.os.Bundle;
 import android.view.View;

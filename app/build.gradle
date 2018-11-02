@@ -8,6 +8,10 @@ task copyDeps(type: Exec, dependsOn: 'buildDeps'){
         commandLine 'bash', '../libuv/libuv-1.23.1/COPY.sh'
 }
 
+task copyXMRig(type: Exec, dependsOn: 'externalNativeBuild' ){
+    commandLine 'bash', 'src/main/cpp/xmrig-2.8.3/COPY.sh'
+}
+
 project.tasks.getByName('preBuild').dependsOn copyDeps
 
 android {
@@ -81,11 +85,6 @@ android {
     }
 
 
-    task copyXMRig(type: Exec){
-        commandLine 'bash', 'src/main/cpp/xmrig-2.8.3/COPY.sh'
-    }
-
-    copyXMRig
 }
 
 dependencies {
