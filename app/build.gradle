@@ -38,7 +38,7 @@ android {
             sourceCompatibility JavaVersion.VERSION_1_8
             targetCompatibility JavaVersion.VERSION_1_8
         }
-        applicationId "org.elijax.androidxmrigminer"
+        applicationId "org.elijaxapps.androidxmrigminer"
         minSdkVersion 23
         targetSdkVersion 26
         versionCode 5
