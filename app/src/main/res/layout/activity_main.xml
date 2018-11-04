@@ -9,7 +9,7 @@
     android:layout_gravity="top|bottom|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|start|end"
     android:theme="@style/AppTheme"
     android:visibility="visible"
-    tools:context="com.elijaxapps.androidminer.MainActivity">
+    tools:context="org.elijaxapps.androidminer.MainActivity">
 
     <include
         android:id="@+id/include"

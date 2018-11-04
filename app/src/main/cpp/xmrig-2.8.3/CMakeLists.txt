@@ -10,7 +10,7 @@ option(WITH_TLS       "Enable OpenSSL support" OFF)
 option(WITH_ASM       "Enable ASM PoW implementations" ON)
 option(BUILD_STATIC   "Build static binary" OFF)
 
-set(UV_LIBRARY ${CMAKE_CURRENT_SOURCE_DIR}/src/libs/${ANDROID_ABI}/libuv.a)
+set(UV_LIBRARY ${CMAKE_CURRENT_SOURCE_DIR}/src/libs/${CMAKE_ANDROID_ARCH_ABI}/libuv.a)
 
 include (CheckIncludeFile)
 include (cmake/cpu.cmake)
@@ -259,4 +259,3 @@ endif()
 
 add_executable(${PROJECT_NAME} ${HEADERS} ${SOURCES} ${SOURCES_OS} ${SOURCES_CPUID} ${HEADERS_CRYPTO} ${SOURCES_CRYPTO} ${SOURCES_SYSLOG} ${HTTPD_SOURCES} ${TLS_SOURCES} ${XMRIG_ASM_SOURCES})
 target_link_libraries(${PROJECT_NAME} ${XMRIG_ASM_LIBRARY} ${OPENSSL_LIBRARIES} ${UV_LIBRARIES} ${MHD_LIBRARY} ${EXTRA_LIBS} ${CPUID_LIB})
-execute_process(COMMAND "bash ./COPY.sh")

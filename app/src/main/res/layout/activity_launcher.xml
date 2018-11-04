@@ -7,7 +7,7 @@
     android:theme="@style/AppTheme"
     android:layout_margin="32dp"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
-    tools:context="com.elijaxapps.androidminer.LauncherActivity">
+    tools:context="org.elijaxapps.androidminer.LauncherActivity">
 
     <ImageView
         android:layout_width="match_parent"

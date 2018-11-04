@@ -10,7 +10,7 @@
     android:orientation="vertical"
     android:theme="@style/AppTheme"
     android:visibility="visible"
-    tools:context="com.elijaxapps.androidminer.MainActivity">
+    tools:context="org.elijaxapps.androidminer.MainActivity">
 
     <LinearLayout
         android:id="@+id/lin1"

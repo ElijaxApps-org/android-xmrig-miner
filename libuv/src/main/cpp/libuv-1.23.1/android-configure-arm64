@@ -20,6 +20,6 @@ export CXXFLAGS="-D__ANDROID_API__=$API"
 
 if [[ $2 == 'gyp' ]]
   then
-    ./gyp_uv.py -Dtarget_arch=arm -DOS=android -f make-android
+    gyp_uv.py -Dtarget_arch=arm -DOS=android -f make-android
 
 fi
