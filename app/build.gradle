@@ -1,18 +1,6 @@
 apply plugin: 'com.android.application'
 
-task buildDeps(type: Exec){
-        commandLine 'bash', '../libuv/libuv-1.23.1/BASHCOMPILE.sh'
-}
 
-task copyDeps(type: Exec, dependsOn: 'buildDeps'){
-        commandLine 'bash', '../libuv/libuv-1.23.1/COPY.sh'
-}
-
-task copyXMRig(type: Exec, dependsOn: 'externalNativeBuild' ){
-    commandLine 'bash', 'src/main/cpp/xmrig-2.8.3/COPY.sh'
-}
-
-project.tasks.getByName('preBuild').dependsOn copyDeps
 
 android {
     compileSdkVersion 26
@@ -42,7 +30,7 @@ android {
             sourceCompatibility JavaVersion.VERSION_1_8
             targetCompatibility JavaVersion.VERSION_1_8
         }
-        applicationId "org.elijax.androidxmrigminer"
+        applicationId "org.elijaxapps.androidxmrigminer"
         minSdkVersion 23
         targetSdkVersion 26
         versionCode 5
@@ -53,13 +41,13 @@ android {
                 arguments "-DUV_INCLUDE_DIR=src/main/cpp/xmrig-2.8.3/include"
                 cppFlags "-std=gnu++11"
                 // -std=c++11 or -std=gnu++11
-
             }
         }
         multiDexEnabled true //important
     }
     buildTypes {
         debug {
+
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             debuggable true
@@ -73,18 +61,21 @@ android {
         }
     }
     buildToolsVersion '28.0.3'
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    externalNativeBuild {
+    externalNativeBuild{
         cmake {
             path file('src/main/cpp/xmrig-2.8.3/CMakeLists.txt')
         }
     }
 
-
+    task copyXMRig(type: Exec, dependsOn: ':app:externalNativeBuildRelease'){
+        commandLine 'bash', 'COPY.sh'
+    }
 }
 
 dependencies {
@@ -97,3 +88,7 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
 }
 
+project.tasks.first().dependsOn(':libuv:assembleRelease')
+project.afterEvaluate {
+    compileReleaseSources.dependsOn copyXMRig
+}

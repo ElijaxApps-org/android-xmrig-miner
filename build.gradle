@@ -1,13 +1,10 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
-
-
     repositories {
-	maven {
-	    url 'https://maven.google.com'
-	}
+        google()
+        maven {
+            url 'https://maven.google.com'
+        }
         jcenter()
-        //google()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.2.1'
@@ -29,4 +26,3 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
-
