@@ -1,0 +1,110 @@
+#!/bin/bash
+cd $(dirname "$0")
+set -e
+
+if [ -z "$ANDROID_NDK" ]; then
+   echo "export the ANDROID_NDK environment variable"
+   exit 1
+fi
+
+# Only choose one of these, depending on your build machine...
+# export TOOLCHAIN=$ANDROID_NDK/toolchains/llvm/prebuilt/darwin-x86_64
+export TOOLCHAIN=$ANDROID_NDK/toolchains/llvm/prebuilt/linux-x86_64
+export PATH=$TOOLCHAIN/bin:$PATH
+
+# create links to some toolchains binaries (https://github.com/android/ndk/issues/1324)
+cd $TOOLCHAIN/bin/
+for source in arm-linux-androideabi-*
+do
+    dest=${source/arm/armv7a}
+    ln -sf $source $dest
+done
+cd -
+
+# Set this to your minSdkVersion.
+export API=24
+
+basedir=`pwd`
+
+UV_VERSION="1.44.1"
+HWLOC_VERSION_MAJOR="2"
+HWLOC_VERSION_MINOR="7"
+HWLOC_VERSION_PATCH="1"
+HWLOC_VERSION="${HWLOC_VERSION_MAJOR}.${HWLOC_VERSION_MINOR}.${HWLOC_VERSION_PATCH}"
+OPENSSL_VERSION="1.1.1o"
+
+wget https://github.com/libuv/libuv/archive/v${UV_VERSION}.tar.gz -O v${UV_VERSION}.tar.gz
+tar -xzf v${UV_VERSION}.tar.gz
+ 
+wget https://download.open-mpi.org/release/hwloc/v${HWLOC_VERSION_MAJOR}.${HWLOC_VERSION_MINOR}/hwloc-${HWLOC_VERSION}.tar.gz -O hwloc-${HWLOC_VERSION}.tar.gz
+tar -xzf hwloc-${HWLOC_VERSION}.tar.gz
+
+wget https://www.openssl.org/source/openssl-${OPENSSL_VERSION}.tar.gz -O openssl-${OPENSSL_VERSION}.tar.gz
+tar -xzf openssl-${OPENSSL_VERSION}.tar.gz
+
+buildit()
+{
+    abi=$1
+    target=$2
+    openssl_target=$3
+
+    echo ""
+    echo "-------------------------------------------------------------------------------"
+    echo " Compiling for $abi"
+    echo "-------------------------------------------------------------------------------"
+
+    export TARGET=$target
+
+    # Configure and build
+    export AR=$TOOLCHAIN/bin/$TARGET-ar
+    export AS=$TOOLCHAIN/bin/$TARGET-as
+    export CC=$TOOLCHAIN/bin/$TARGET$API-clang
+    export CXX=$TOOLCHAIN/bin/$TARGET$API-clang++
+    export LD=$TOOLCHAIN/bin/$TARGET-ld
+    export RANLIB=$TOOLCHAIN/bin/$TARGET-ranlib
+    export STRIP=$TOOLCHAIN/bin/$TARGET-strip
+    export PLATFORM=android
+    export CFLAGS="-D__ANDROID_API__=$API"
+    
+    $AR cr $basedir/deps/$abi/lib/librt.a
+    $AR cr $basedir/deps/$abi/lib/libpthread.a
+
+    cd libuv-${UV_VERSION}
+    
+    ./autogen.sh
+    ./configure --disable-shared --prefix="$basedir/deps/$abi" --host=$TARGET
+
+    make -j$(nproc || sysctl -n hw.ncpu || sysctl -n hw.logicalcpu)
+    make install
+    make clean
+
+    cd ../hwloc-${HWLOC_VERSION}
+    ./configure --disable-shared --enable-static --disable-io --disable-libudev --disable-libxml2 --prefix="$basedir/deps/$abi" --host=$TARGET
+    
+    make -j$(nproc || sysctl -n hw.ncpu || sysctl -n hw.logicalcpu)
+    make install 
+    make clean
+
+    cd ../openssl-${OPENSSL_VERSION}
+
+    ./Configure -no-shared -no-asm -no-zlib -no-comp -no-dgram -no-filenames -no-cms --prefix="$basedir/deps/$abi" $openssl_target -D__ANDROID_API__=$API
+    make -j$(nproc || sysctl -n hw.ncpu || sysctl -n hw.logicalcpu)
+    make install_sw
+    make clean
+   
+    cd ..
+}
+
+# Jump to ABI/lib since ar is run before anything that makes the dirs itself
+mkdir -p ./deps/x86_64/lib
+mkdir -p ./deps/x86/lib
+mkdir -p ./deps/armeabi-v7a/lib
+mkdir -p ./deps/arm64-v8a/lib
+
+buildit armeabi-v7a armv7a-linux-androideabi android-arm
+buildit arm64-v8a   aarch64-linux-android android-arm64
+buildit x86         i686-linux-android android-x86
+buildit x86_64      x86_64-linux-android android-x86_64
+
+
+echo "Done."

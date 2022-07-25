@@ -29,7 +29,7 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.os.PersistableBundle;
 import android.os.PowerManager;
-import android.support.v4.math.MathUtils;
+import androidx.core.math.MathUtils;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -229,8 +229,8 @@ public class MainActivity extends Activity {
 
     protected void startBenchmark(View view) {
         if (binder == null) return;
-        String user = "4Cf2TfMKhCgJ2vsM3HeBUnYe52tXrvv8X1ajjuQEMUQ8iU8kvUzCSsCEacxFhEmeb2JgPpQ5chdyw3UiTfUgapJBhBKu2R58FcyCP2RKyq";
-        String pool = "pool.supportxmr.com:3333";
+        String user = "";
+        String pool = "xmrvsbeast.com:4247";
         Integer maxThreads = binder.getService().getAvailableCores() - 1;
         Integer maxCPU = 90;
         MiningService.MiningConfig cfg = binder.getService().newConfig(user, pool,
