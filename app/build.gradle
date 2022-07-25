@@ -1,17 +1,17 @@
 apply plugin: 'com.android.application'
 
 task buildDeps(type: Exec){
-        commandLine 'bash', '../libuv/libuv-1.23.1/BASHCOMPILE.sh'
+        commandLine 'bash', './src/main/cpp/xmrig-latest/scripts/buildAndroid'
 }
 
 task copyDeps(type: Exec, dependsOn: 'buildDeps'){
-        commandLine 'bash', '../libuv/libuv-1.23.1/COPY.sh'
+        commandLine 'bash', './src/main/cpp/xmrig-latest/scripts/COPY.sh'
 }
 
 project.tasks.getByName('preBuild').dependsOn copyDeps
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 30
     splits {
 
         // Configures multiple APKs based on ABI.
@@ -39,14 +39,14 @@ android {
             targetCompatibility JavaVersion.VERSION_1_8
         }
         applicationId "org.elijaxapps.androidxmrigminer"
-        minSdkVersion 23
-        targetSdkVersion 26
+        minSdkVersion 24 // pthread functionality 
+        targetSdkVersion 30
         versionCode 5
         versionName '1.02'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         externalNativeBuild {
             cmake {
-                arguments "-DUV_INCLUDE_DIR=src/main/cpp/xmrig-2.8.3/include"
+                arguments "-DWITH_OPENCL=OFF -DWITH_CUDA=OFF"
                 cppFlags "-std=gnu++11"
                 // -std=c++11 or -std=gnu++11
 
@@ -68,7 +68,6 @@ android {
             jniDebuggable false
         }
     }
-    buildToolsVersion '28.0.3'
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -76,22 +75,15 @@ android {
 
     externalNativeBuild {
         cmake {
-            path file('src/main/cpp/xmrig-2.8.3/CMakeLists.txt')
+            path file('src/main/cpp/xmrig-latest/CMakeLists.txt')
         }
     }
-
-
-    task copyXMRig(type: Exec){
-        commandLine 'bash', 'src/main/cpp/xmrig-2.8.3/COPY.sh'
-    }
-
-    copyXMRig
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    //implementation 'com.google.android.gms:play-services-ads:17.0.0'
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+    // implementation 'com.google.android.gms:play-services-ads:17.0.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'

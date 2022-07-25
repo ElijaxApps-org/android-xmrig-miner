@@ -4,7 +4,7 @@ XMRig miner built inside an android app
 
 This app is based on the proof of concept provided by https://github.com/upost/MoneroMiner
 
-I updated dependencies (libuv-1.23.1 and xmrig-2.8.0-rc) and the project to Android Studio 3.2.
+Deps have been updated and a lot of the project is at least in working order with modern tooling. Releases are not available at this time, I have done no real Android development in the past, but if the original author would truly like to abandon the project, I will work towards getting it published myself.
 
 # Releases
 
@@ -17,7 +17,7 @@ Otherwise, you can download the app directly from the [Releases tab](https://git
 # Compile instructions
 Clone the repository and run the following command on base dir:
 ```
-gradle clean :libuv:assembleRelease :app:assembleRelease
+gradle clean :app:assembleRelease
 ```
 Then you can sign your .apk in order to install it (release builds must be digital signed before install).
 
@@ -25,7 +25,7 @@ Then you can sign your .apk in order to install it (release builds must be digit
 
 Android Studio.
 Download both SDK and NDK with sdk-manager.
-Gradle 4.10.2
+Gradle 7 (NOTE: There is a warning that this will have to be updated again for Gradle 8 due to JCenter going down)
 
 # Credits
 libuv by http://libuv.org
